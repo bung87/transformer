@@ -1,9 +1,12 @@
 {
     "compilerOptions": {
         "outDir": "./dist/",
-        "noImplicitAny": true,
+        "checkJs": false,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
         "module": "es6",
         "target": "es5",
         "allowJs": false
-    }
+    },
+    "exclude": ["node_modules/**"]
 }

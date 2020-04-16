@@ -1,3 +1,17 @@
 body {
-    background-color: black;
+    // background-color: black;
+}
+#input,#output{
+    height:80vh;
+}
+.ace_editor{
+    border:1px solid #ddd;
+}
+.dropdown-toggle{
+    margin-bottom:1rem;
+}
+.hero.hero-sm {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom:1rem;
 }

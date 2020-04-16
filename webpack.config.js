@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+// require("ace-builds/webpack-resolver");
 const def = new webpack.DefinePlugin({
   NL_OS:JSON.stringify("MacOS(Darwin)"),
   NL_VERSION:JSON.stringify('1.3.0'),
@@ -28,6 +28,12 @@ module.exports = {
           },
           'css-loader',
           'sass-loader'
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          'css-loader',
         ],
       },
 

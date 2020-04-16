@@ -20,29 +20,46 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import {AppLib} from './app-core/lib';
+import { AppLib } from './app-core/lib';
+
+import 'ace-builds';
+import 'ace-builds/webpack-resolver';
+import 'spectre.css/src/spectre.scss';
+import 'spectre.css/src/spectre-icons.scss';
 import './mycss.scss';
 import './mycss2.scss';
-
 let appLib = new AppLib();
 
 let myapp: any = {
-    myfunction : function () { 
-        document.getElementById('info').innerHTML = NL_NAME + " is running on port " +
-                    NL_PORT + " inside " + NL_OS + "<br/><br/>" + "<span>v" + NL_VERSION + "</span>";
-                 }
+    myfunction: function () {
+        // document.getElementById('info').innerHTML = NL_NAME + " is running on port " +
+        //     NL_PORT + " inside " + NL_OS + "<br/><br/>" + "<span>v" + NL_VERSION + "</span>";
+        const input = document.getElementById('input');
+        const output = document.getElementById('output')
+        const editor = ace.edit(input)
+        editor.setTheme("ace/theme/github");
+        editor.setOptions({
+            mode: "ace/mode/javascript"
+        });
+
+        const editor2 = ace.edit(output);
+        editor2.setTheme("ace/theme/github");
+        editor2.setOptions({
+            mode: "ace/mode/javascript"
+        });
+    }
 };
-    
+
 
 Neutralino.init({
-    load: function() {
+    load: function () {
         myapp.myfunction();
         appLib.showSettings();
     },
-    pingSuccessCallback : function() {
+    pingSuccessCallback: function () {
 
     },
-    pingFailCallback : function() {
+    pingFailCallback: function () {
 
     }
 });
