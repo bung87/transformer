@@ -21,14 +21,16 @@
 // SOFTWARE.
 
 import {AppLib} from './app-core/lib';
-import './mycss.css';
-import './mycss2.css';
+import './mycss.scss';
+import './mycss2.scss';
 
 let appLib = new AppLib();
 
 let myapp: any = {
-    myfunction : function () { document.getElementById('info').innerHTML = NL_NAME + " is running on port " +
-                    NL_PORT + " inside " + NL_OS + "<br/><br/>" + "<span>v" + NL_VERSION + "</span>"; }
+    myfunction : function () { 
+        document.getElementById('info').innerHTML = NL_NAME + " is running on port " +
+                    NL_PORT + " inside " + NL_OS + "<br/><br/>" + "<span>v" + NL_VERSION + "</span>";
+                 }
 };
     
 

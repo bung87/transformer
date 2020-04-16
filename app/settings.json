@@ -1,7 +1,7 @@
 {
     "appname" : "myapp",
     "appport" : "5006",
-    "mode" : "window",
+    "mode" : "browser",
     "window" : {
         "width" : "1000",
         "height" : "700",
