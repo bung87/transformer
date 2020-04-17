@@ -65,7 +65,7 @@ let myapp: any = {
 Neutralino.init({
     load: function () {
         myapp.myfunction();
-        appLib.showSettings();
+        // appLib.showSettings();
     },
     pingSuccessCallback: function () {
 

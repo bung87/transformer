@@ -1,5 +1,8 @@
 const Sass = require('sass.js/dist/sass.js');
-const sass = new Sass(require.resolve('sass.js/dist/sass.worker.js'));
+require('sass.js/dist/sass.worker.js')
+const sass = new Sass('/assets/sass.worker.js');
+// const sass = new Sass(require.resolve('sass.js/dist/sass.worker.js'));
+
 
 function sass2css(value: string) {
     return new Promise<string>(function (resolve, reject) {
