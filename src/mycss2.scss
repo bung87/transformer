@@ -1,17 +1,29 @@
 body {
     // background-color: black;
 }
-#input,#output{
-    height:80vh;
+#input,
+#output {
+    height: 80vh;
 }
-.ace_editor{
-    border:1px solid #ddd;
+.ace_editor {
+    border: 1px solid #ddd;
 }
-.dropdown-toggle{
-    margin-bottom:1rem;
+.dropdown-toggle {
+    margin-bottom: 1rem;
 }
 .hero.hero-sm {
     padding-bottom: 0;
     padding-top: 0;
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
+}
+#main-btn {
+    height: 4.8rem;
+    line-height: 1.2rem;
+    padding: 1.8rem 0;
+    width: 4.8rem;
+}
+.middle-col{
+    display: flex;
+          justify-content: center;
+          align-items: center;
 }

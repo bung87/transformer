@@ -12,11 +12,15 @@ const def = new webpack.DefinePlugin({
   NL_TOKEN:"",
 });
 module.exports = {
-  entry: path.resolve(__dirname, './src/app.ts'),
+  target: 'web',
+  entry: path.resolve(__dirname, './src/app.tsx'),
+  node: {
+    fs: "empty"
+  },
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
@@ -36,18 +40,22 @@ module.exports = {
           'css-loader',
         ],
       },
+      // {
+      //   test: /\.worker\.js$/,
+      //   use: { loader: 'worker-loader' }
+      // }
 
     ],
   },
   resolve: {
-    extensions: ['.js','.ts'],
+    extensions: ['.js','.ts',".tsx"],
   },
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, './app/assets'),
   },
   devServer: {
-    contentBase: [path.join(__dirname,'app'),path.join(__dirname,"node_modules","neutralino-client-library","dist")],
+    contentBase: [__dirname,path.join(__dirname,'app'),path.join(__dirname,"node_modules","neutralino-client-library","dist")],
     port: 9000,
   },
   plugins: [
