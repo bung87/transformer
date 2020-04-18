@@ -2,23 +2,33 @@ import React from "react";
 interface Props {
     groups: any[]
     selected: string,
-    onClick:Function
+    onClick: Function
 }
 
-interface State{
+interface State {
     selected: string
 }
-class Dropdown extends React.Component<Props,State> {
+class Dropdown extends React.Component<Props, State> {
     state = {
         selected: this.props.selected
     }
     constructor(props) {
         super(props);
-        
+
     }
     static defaultProps = {
         groups: new Map<string, any[]>(
             [
+                ["scripts", [{
+                    label: "coffeescript",
+                    value: "coffeescript"
+                },{
+                    label: "typescript",
+                    value: "typescript"
+                }, {
+                    label: "javascript",
+                    value: "javascript"
+                }]],
                 ["styles", [{
                     label: "scss",
                     value: "scss"
@@ -45,14 +55,14 @@ class Dropdown extends React.Component<Props,State> {
             menu.push(
                 <React.Fragment key={key}>
                     <li key={key} className="divider" data-content={key}></li>
-                    {value.filter( x => x.label !== this.state.selected).map(x => {
+                    {value.filter(x => x.label !== this.state.selected).map(x => {
                         let className = 'menu-item';
                         if (this.state.selected === x.label) {
                             className += ' active';
-                          }
+                        }
                         return <li onClick={(e) => {
-                            this.props.onClick(e,x.label);
-                            this.setState({selected:x.label});
+                            this.props.onClick(e, x.label);
+                            this.setState({ selected: x.label });
                         }} key={x.label} className={className}><a href="#">{x.label}</a></li>
                     })}
                 </React.Fragment>

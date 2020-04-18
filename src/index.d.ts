@@ -10,3 +10,4 @@ declare namespace Neutralino {
         function getSettings(s: any, f: any): void;
     }
 }
+declare module 'react-use-ripple'

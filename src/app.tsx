@@ -26,7 +26,7 @@ import React from 'react';
 import App from './components/App';
 import 'ace-builds';
 import 'ace-builds/webpack-resolver';
-import 'spectre.css/src/spectre.scss';
+
 import 'spectre.css/src/spectre-icons.scss';
 import './mycss.scss';
 import './mycss2.scss';
@@ -48,6 +48,10 @@ let myapp: any = {
         const input = document.getElementById('input');
         const output = document.getElementById('output')
         const editor = ace.edit(input)
+        editor.setOptions({
+            autoScrollEditorIntoView: true,
+            copyWithEmptySelection: true,
+        });
         editor.setTheme("ace/theme/tomorrow");
         // editor.setOptions({
         //     mode: "ace/mode/javascript"
@@ -55,6 +59,10 @@ let myapp: any = {
 
         const editor2 = ace.edit(output);
         editor2.setTheme("ace/theme/tomorrow");
+        editor2.setOptions({
+            autoScrollEditorIntoView: true,
+            copyWithEmptySelection: true,
+        });
         // editor2.setOptions({
         //     mode: "ace/mode/javascript"
         // });

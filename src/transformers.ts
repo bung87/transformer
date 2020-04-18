@@ -25,11 +25,27 @@ function less2css(value: string) {
     });
 
 }
+
+function coffeescript2javascript(value:string){
+    const CoffeeScript = require('coffeescript')
+    const result = CoffeeScript.compile(value,{bare:true});
+    return Promise.resolve(result)
+}
+
+function typescript2javascript(value:string){
+    const ts = require("typescript")
+    let result = ts.transpileModule(value, { compilerOptions: { module: ts.ModuleKind.CommonJS }});
+    return Promise.resolve(result.outputText)
+    
+}
+
 const scss2css = sass2css
 const less2scss = require('less2sass')
 export {
     less2css,
     sass2css,
     scss2css,
-    less2scss
+    less2scss,
+    coffeescript2javascript,
+    typescript2javascript
 } 

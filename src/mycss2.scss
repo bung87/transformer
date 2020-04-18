@@ -1,3 +1,6 @@
+$primary-color:#6688CC;
+@import 'spectre.css/src/spectre.scss';
+
 body {
     // background-color: black;
 }
@@ -9,12 +12,16 @@ body {
     border: 1px solid #ddd;
 }
 .dropdown-toggle {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 .hero.hero-sm {
     padding-bottom: 0;
     padding-top: 0;
     margin-bottom: 1rem;
+}
+.hero{
+    background:#ACBFE6;
+    // color:#182978;
 }
 #main-btn {
     height: 4.8rem;

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Dropdown from './Dropdown';
 import 'ace-builds';
 import 'ace-builds/webpack-resolver';
 import * as transformers from '../transformers';
+import { useRipple } from 'react-use-ripple';
 
 function getInputEditor() {
   const input = document.getElementById('input') as HTMLTextAreaElement;
@@ -79,14 +80,31 @@ export default function App() {
           beautify.beautify(outputEditor.session);
         }
         break;
+      case 'coffeescript2javascript':
+        {
+          transformers['coffeescript2javascript'](value).then(x => {
+            outputEditor.setValue(x);
+            beautify.beautify(outputEditor.session);
+          })
+        }
+        break;
+        case 'typescript2javascript':
+        {
+          transformers['typescript2javascript'](value).then(x => {
+            outputEditor.setValue(x);
+            beautify.beautify(outputEditor.session);
+          })
+        }
+        break;
     }
 
   }
-
+  const ref = useRef();
+  useRipple(ref);
 
   return (
     <React.Fragment>
-      <div className="hero hero-sm bg-dark">
+      <div className="hero hero-sm">
         <div className="hero-body">
 
           <p>This is a hero example</p>
@@ -101,7 +119,9 @@ export default function App() {
           </div>
 
           <div className="column col-2 middle-col">
-            <button id="main-btn" onClick={transform} className="btn btn-lg s-circle bg-primary text-light">large button</button>
+            <button ref={ref} id="main-btn" onClick={transform} className="btn btn-lg s-circle bg-primary text-light">
+              <i className="icon icon-arrow-right"></i>
+            </button>
           </div>
 
           <div className="column col-5">
