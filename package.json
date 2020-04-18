@@ -39,6 +39,7 @@
     "coffeescript": "^2.5.1",
     "less": "^3.11.1",
     "less2sass": "^1.0.3",
+    "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-use-ripple": "^1.0.7",

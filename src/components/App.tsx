@@ -96,6 +96,14 @@ export default function App() {
           })
         }
         break;
+        default:
+          {
+            transformers[transId](value).then(x => {
+              outputEditor.setValue(x);
+              beautify.beautify(outputEditor.session);
+            })
+          }
+        break;
     }
 
   }
