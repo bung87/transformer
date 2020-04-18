@@ -44,6 +44,12 @@ function scss2less(value:string){
     const result = new sassToLess().process(value)
     return Promise.resolve(result)
 }
+
+function sass2scss(val:string){
+    const SassToSCSS = require('./sass2scss')
+    const ins = new SassToSCSS()
+    return Promise.resolve(ins.convert(val))
+}
 // const scss2less = sass2less
 const scss2css = sass2css
 const less2scss = require('less2sass')
@@ -55,6 +61,7 @@ export {
     less2scss,
     scss2less,
     // sass2less,
+    sass2scss,
     coffeescript2javascript,
     typescript2javascript
 } 

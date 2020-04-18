@@ -49,6 +49,7 @@ let myapp: any = {
         const output = document.getElementById('output')
         const editor = ace.edit(input)
         editor.setOptions({
+            enableBasicAutocompletion: false,
             autoScrollEditorIntoView: true,
             copyWithEmptySelection: true,
         });
@@ -60,6 +61,7 @@ let myapp: any = {
         const editor2 = ace.edit(output);
         editor2.setTheme("ace/theme/tomorrow");
         editor2.setOptions({
+            enableBasicAutocompletion: false,
             autoScrollEditorIntoView: true,
             copyWithEmptySelection: true,
         });

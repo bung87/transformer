@@ -1,5 +1,6 @@
 
 const DEFAULT_INDENTATION = 2;
+const fixIndents = require("fix-indents");
 class SassToSCSS {
     spaces: number
     /**
@@ -16,7 +17,8 @@ class SassToSCSS {
     }
 
     convert(src: string) {
-        const sass_lines = src.split(/[\r\n]+/g)
+        const code =  fixIndents(src, { "countSpaces": 2/*options*/ });
+        const sass_lines = code.split(/[\r\n]+/g)
         var cleaned:string[], line: string, outlines, re_css_rule: RegExp, re_import: RegExp, re_sass_include: RegExp, re_sass_mixin: RegExp, re_sass_variable: RegExp, result;
         outlines = [];
         cleaned = [];
@@ -98,29 +100,5 @@ class SassToSCSS {
     }
 }
 module.exports = SassToSCSS
-// const expect = `
-// $font-stack:    Helvetica, sans-serif;
-// $primary-color: #333;
 
-// body
-//   font: 100% $font-stack
-//   color: $primary-color
-
-// nav
-//   ul
-//     margin: 0
-//     padding: 0
-//     list-style: none
-
-//   li
-//     display: inline-block
-
-//   a
-//     display: block
-//     padding: 6px 12px
-//     text-decoration: none
-// `
-
-// const ins = new SassToSCSS()
-// console.log(ins.convert(expect))
 
