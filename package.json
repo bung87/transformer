@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/bung87/transformer"
+  },
   "scripts": {
     "build": "webpack -p --config webpack.config.js",
+    "buildDocs": "webpack -p --config docs.webpack.config.js",
+    "deployDocs": "node tools/gh-pages-publish.js",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,11 +26,12 @@
     "css-loader": "^3.4.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^6.0.0",
+    "html-webpack-harddisk-plugin": "^1.0.1",
     "html-webpack-plugin": "^4.2.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "neutralino-client-library": "git+https://github.com/shalithasuranga/neutralinojs-client-library.git",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
+    "terser-webpack-plugin": "^2.3.5",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3",
     "webpack": "^4.41.4",
@@ -41,6 +47,8 @@
     "less": "^3.11.1",
     "less2sass": "^1.0.3",
     "lodash": "^4.17.15",
+    "neutralino-client-library": "git+https://github.com/shalithasuranga/neutralinojs-client-library.git",
+    "opal-runtime": "^1.0.14",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-use-ripple": "^1.0.7",

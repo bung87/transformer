@@ -4,9 +4,10 @@ const sass = new Sass('/assets/sass.worker.js');
 // const sass = new Sass(require.resolve('sass.js/dist/sass.worker.js'));
 
 
-function sass2css(value: string) {
+function scss2css(value: string) {
     return new Promise<string>(function (resolve, reject) {
         sass.compile(value, function (result) {
+            console.log(result)
             if (result.status === 1) {
                 reject(result)
             } else {
@@ -51,13 +52,28 @@ function sass2scss(val:string){
     return Promise.resolve(ins.convert(val))
 }
 // const scss2less = sass2less
-const scss2css = sass2css
+function sass2css(val:string){
+    const SassToSCSS = require('./sass2scss')
+    const ins = new SassToSCSS()
+    const scss = ins.convert(val);
+    console.log(scss)
+    return scss2css(scss)
+}
+// const scss2css = sass2css
 const less2scss = require('less2sass')
-
+function css2scss(val:string){
+    // const Opal = require('./vendors/css2sass.js')
+    // const ins = new Opal.Sass.$$.CSS(val)
+  
+    // const res = ins.$render()
+    // return Promise.resolve(res)
+    return Promise.reject()
+}
 export {
     less2css,
     sass2css,
     scss2css,
+    css2scss,
     less2scss,
     scss2less,
     // sass2less,

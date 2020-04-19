@@ -21,7 +21,7 @@ class Dropdown extends React.Component<Props, State> {
             [
                 ["scripts", [{
                     label: "coffeescript",
-                    value: "coffeescript"
+                    value: "coffee"
                 },{
                     label: "typescript",
                     value: "typescript"
@@ -61,7 +61,7 @@ class Dropdown extends React.Component<Props, State> {
                             className += ' active';
                         }
                         return <li onClick={(e) => {
-                            this.props.onClick(e, x.label);
+                            this.props.onClick(e, x.value);
                             this.setState({ selected: x.label });
                         }} key={x.label} className={className}><a href="#">{x.label}</a></li>
                     })}

@@ -53,7 +53,7 @@ export default function App() {
     switch (transId) {
       case 'sass2css':
       case 'scss2css':
-        transformers['sass2css'](value).then(x => {
+        transformers[transId](value).then(x => {
           outputEditor.setValue(x);
           beautify.beautify(outputEditor.session);
         }).catch(e => {

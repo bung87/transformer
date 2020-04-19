@@ -38,15 +38,16 @@ class SassToSCSS {
                 }
                 line += ";";
             } else {
-                if (line.search(re_sass_mixin)) {
+                if (line.search(re_sass_mixin)!==-1) {
                     line = line.replace("=", "@mixin ");
                 } else {
-                    if (line.search(re_sass_include)) {
+                    if (line.search(re_sass_include)!==-1) {
                         line = line.replace("+", "@include ");
                         line += ";";
                     } else {
                         if (re_css_rule.test(line)) {
                             line += ";";
+                            console.log(line)
                         } else {
                             if (re_sass_variable.test(line)) {
                                 line += ";";
