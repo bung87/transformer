@@ -5,6 +5,49 @@ import 'ace-builds/webpack-resolver';
 import * as transformers from '../transformers';
 import { useRipple } from 'react-use-ripple';
 
+let inputGroups = new Map<string, any[]>(
+  [
+      ["scripts", [{
+          label: "coffeescript",
+          value: "coffee",
+          lang: "coffee",
+      }, {
+          label: "es5",
+          value: "es5",
+          lang: "javascript",
+      }, {
+          label: "es6",
+          value: "es6",
+          lang: "javascript",
+      }
+          , {
+          label: "typescript",
+          value: "typescript",
+          lang: "typescript",
+      }, {
+          label: "javascript",
+          value: "javascript",
+          lang: "javascript",
+      }]],
+      ["styles", [{
+          label: "scss",
+          value: "scss",
+          lang: "scss",
+      },
+      
+      {
+          label: "less",
+          value: "less",
+          lang: "less",
+      },
+      {
+          label: "sass",
+          value: "sass",
+          lang: "sass",
+      }]]
+  ]
+)
+
 function getInputEditor() {
   const input = document.getElementById('input') as HTMLTextAreaElement;
   const inputEditor = ace.edit(input);
@@ -19,17 +62,17 @@ function getOutputEditor() {
 
 export default function App() {
   const [options, setState] = useState<{ input?: string, output?: string }>({ input: "scss", output: "css" });
-  const setInput = (e, value) => {
+  const setInput = (e, x) => {
 
-    setState({ ...options, input: value });
+    setState({ ...options, input: x.value });
     getInputEditor().setOptions({
-      mode: `ace/mode/${value}`
+      mode: `ace/mode/${x.lang}`
     });
   };
-  const setOutput = (e, value) => {
-    setState({ ...options, output: value });
+  const setOutput = (e, x) => {
+    setState({ ...options, output: x.value });
     getOutputEditor().setOptions({
-      mode: `ace/mode/${value}`
+      mode: `ace/mode/${x.lang}`
     });
   }
 
@@ -63,7 +106,7 @@ export default function App() {
         })
         break;
       case 'less2css':
-        transformers['less2css'](value).then(x => {
+        transformers[transId](value).then(x => {
           outputEditor.setValue(x);
           beautify.beautify(outputEditor.session);
         }).catch(e => {
@@ -75,14 +118,14 @@ export default function App() {
         break;
       case 'less2scss':
         {
-          const result = transformers['less2scss'].convert(value)
+          const result = transformers[transId].convert(value)
           outputEditor.setValue(result);
           beautify.beautify(outputEditor.session);
         }
         break;
       case 'coffeescript2javascript':
         {
-          transformers['coffeescript2javascript'](value).then(x => {
+          transformers[transId](value).then(x => {
             outputEditor.setValue(x);
             beautify.beautify(outputEditor.session);
           })
@@ -90,12 +133,31 @@ export default function App() {
         break;
         case 'typescript2javascript':
         {
-          transformers['typescript2javascript'](value).then(x => {
+          transformers[transId](value).then(x => {
             outputEditor.setValue(x);
             beautify.beautify(outputEditor.session);
           })
         }
         break;
+        case 'es52es6':
+          {
+            transformers[transId](value).then(x => {
+              outputEditor.setValue(x.code);
+              if(x.warnings && x.warnings.length > 0){
+                inputEditor.getSession().setAnnotations(x.warnings.map( e => ({ text: e.msg, row: e.line - 1, column: 0, type: "warning" }) ))
+              }
+              beautify.beautify(outputEditor.session);
+            })
+          }
+          break;
+          case 'es62es5':{
+            transformers[transId](value).then(x => {
+              outputEditor.setValue(x.code);
+             
+              beautify.beautify(outputEditor.session);
+            })
+          }
+          break;
         default:
           {
             transformers[transId](value).then(x => {
@@ -121,7 +183,7 @@ export default function App() {
       <div className="container">
         <div className="columns">
           <div className="column col-5">
-            <Dropdown selected={options.input} onClick={setInput}></Dropdown>
+            <Dropdown selected={options.input} groups={inputGroups} onClick={setInput}></Dropdown>
             <div id="input">
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React from "react";
 interface Props {
-    groups: any[]
+    groups: Map<string, any[]>
     selected: string,
     onClick: Function
 }
@@ -21,29 +21,45 @@ class Dropdown extends React.Component<Props, State> {
             [
                 ["scripts", [{
                     label: "coffeescript",
-                    value: "coffee"
-                },{
+                    value: "coffee",
+                    lang: "coffee",
+                }, {
+                    label: "es5",
+                    value: "es5",
+                    lang: "javascript",
+                }, {
+                    label: "es6",
+                    value: "es6",
+                    lang: "javascript",
+                }
+                    , {
                     label: "typescript",
-                    value: "typescript"
+                    value: "typescript",
+                    lang: "typescript",
                 }, {
                     label: "javascript",
-                    value: "javascript"
+                    value: "javascript",
+                    lang: "javascript",
                 }]],
                 ["styles", [{
                     label: "scss",
-                    value: "scss"
+                    value: "scss",
+                    lang: "scss",
                 },
                 {
                     label: "css",
-                    value: "css"
+                    value: "css",
+                    lang: "css",
                 },
                 {
                     label: "less",
-                    value: "less"
+                    value: "less",
+                    lang: "less",
                 },
                 {
                     label: "sass",
-                    value: "sass"
+                    value: "sass",
+                    lang: "sass",
                 }]]
             ]
         ),
@@ -61,7 +77,7 @@ class Dropdown extends React.Component<Props, State> {
                             className += ' active';
                         }
                         return <li onClick={(e) => {
-                            this.props.onClick(e, x.value);
+                            this.props.onClick(e, x);
                             this.setState({ selected: x.label });
                         }} key={x.label} className={className}><a href="#">{x.label}</a></li>
                     })}

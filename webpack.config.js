@@ -27,7 +27,7 @@ if (isDevServer) {
     new HtmlWebpackPlugin({
       path: "/assets/",
       // filename: path.resolve("public", "index.html"),
-      title: JSON.stringify(settings.appname),
+      title: settings.appname,
       template: 'src/index.html'
     })
   ])
