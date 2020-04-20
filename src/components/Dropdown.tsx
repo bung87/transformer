@@ -6,10 +6,12 @@ interface Props {
 }
 
 interface State {
-    selected: string
+    selected: string,
+    active: Boolean
 }
 class Dropdown extends React.Component<Props, State> {
     state = {
+        active: false,
         selected: this.props.selected
     }
     constructor(props) {
@@ -66,6 +68,10 @@ class Dropdown extends React.Component<Props, State> {
         selected: "css"
     }
     render() {
+        let dropdownClass = "dropdown"
+        if (this.state.active) {
+            dropdownClass += ' active';
+        }
         const menu = []
         for (let [key, value] of this.props.groups.entries()) {
             menu.push(
@@ -86,11 +92,20 @@ class Dropdown extends React.Component<Props, State> {
         }
         return (
 
-            <div className="dropdown">
-                <a href="#" className="btn btn-primary dropdown-toggle">
+            <div className={dropdownClass}>
+                <a href="javascript:void(0);" onClick={
+                    (e) => {
+                        this.setState({ active: !this.state.active });
+                        const l = () => {
+                            this.setState({ active: !this.state.active })
+                            document.removeEventListener("click", l);
+                        };
+                        document.addEventListener("click", l);
+                    }
+                }
+                    className="btn btn-primary dropdown-toggle">
                     {this.state.selected} <i className="icon icon-caret"></i>
                 </a>
-
                 <ul className="menu">
                     {menu}
                 </ul>

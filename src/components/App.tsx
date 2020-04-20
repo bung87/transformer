@@ -5,7 +5,7 @@ import 'ace-builds/webpack-resolver';
 import * as transformers from '../transformers';
 import { useRipple } from 'react-use-ripple';
 
-let inputGroups = new Map<string, any[]>(
+const inputGroups = new Map<string, any[]>(
   [
       ["scripts", [{
           label: "coffeescript",
@@ -35,6 +35,44 @@ let inputGroups = new Map<string, any[]>(
           lang: "scss",
       },
       
+      {
+          label: "less",
+          value: "less",
+          lang: "less",
+      },
+      {
+          label: "sass",
+          value: "sass",
+          lang: "sass",
+      }]]
+  ]
+)
+
+const outputGroups =  new Map<string, any[]>(
+  [
+      ["scripts", [ {
+          label: "es5",
+          value: "es5",
+          lang: "javascript",
+      }, {
+          label: "es6",
+          value: "es6",
+          lang: "javascript",
+      }, {
+          label: "javascript",
+          value: "javascript",
+          lang: "javascript",
+      }]],
+      ["styles", [{
+          label: "scss",
+          value: "scss",
+          lang: "scss",
+      },
+      {
+          label: "css",
+          value: "css",
+          lang: "css",
+      },
       {
           label: "less",
           value: "less",
@@ -195,7 +233,7 @@ export default function App() {
           </div>
 
           <div className="column col-5">
-            <Dropdown selected={options.output} onClick={setOutput}></Dropdown>
+            <Dropdown selected={options.output} groups={outputGroups} onClick={setOutput}></Dropdown>
             <div id="output">
             </div>
           </div>
