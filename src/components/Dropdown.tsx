@@ -93,7 +93,7 @@ class Dropdown extends React.Component<Props, State> {
         return (
 
             <div className={dropdownClass}>
-                <a href="javascript:void(0);" onClick={
+                <a onClick={
                     (e) => {
                         this.setState({ active: !this.state.active });
                         const l = () => {

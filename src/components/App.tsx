@@ -3,7 +3,7 @@ import Dropdown from './Dropdown';
 import 'ace-builds';
 import 'ace-builds/webpack-resolver';
 import * as transformers from '../transformers';
-import { useRipple } from 'react-use-ripple';
+import Button from '@material-ui/core/Button';
 
 const inputGroups = new Map<string, any[]>(
   [
@@ -208,14 +208,14 @@ export default function App() {
 
   }
   const ref = useRef();
-  useRipple(ref);
+
 
   return (
     <React.Fragment>
       <div className="hero hero-sm">
         <div className="hero-body">
 
-          <p>This is a hero example</p>
+          <p>js,ts,css,less,scss,sass,es5,es6,coffee converter</p>
         </div>
       </div>
       <div className="container">
@@ -227,9 +227,11 @@ export default function App() {
           </div>
 
           <div className="column col-2 middle-col">
-            <button ref={ref} id="main-btn" onClick={transform} className="btn btn-lg s-circle bg-primary text-light">
+            
+            <Button ref={ref} id="main-btn" onClick={transform} className="btn btn-lg s-circle bg-primary text-light">
               <i className="icon icon-arrow-right"></i>
-            </button>
+            </Button>
+            
           </div>
 
           <div className="column col-5">

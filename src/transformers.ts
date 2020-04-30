@@ -27,7 +27,7 @@ function less2css(value: string) {
 
 }
 
-function coffeescript2javascript(value: string) {
+function coffee2javascript(value: string) {
     const CoffeeScript = require('coffeescript')
     const result = CoffeeScript.compile(value, { bare: true });
     return Promise.resolve(result)
@@ -121,6 +121,6 @@ export {
     es62es5,
     // sass2less,
     sass2scss,
-    coffeescript2javascript,
+    coffee2javascript,
     typescript2javascript
 } 
